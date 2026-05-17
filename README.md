@@ -1,73 +1,98 @@
-# React + TypeScript + Vite
+# Advanced Rider — Revision Aid
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web app for studying advanced motorcycle riding theory. Covers the key techniques, rules, and principles used in advanced rider training.
 
-Currently, two official plugins are available:
+Built with Vite, React, TypeScript, and Tailwind CSS.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Topic Flashcards
+Six riding topics, each with key points and a set of flashcards:
 
-## Expanding the ESLint configuration
+| Topic | Difficulty |
+|---|---|
+| Observation | Foundation |
+| Road Positioning | Foundation |
+| Hazard Awareness | Foundation |
+| Cornering | Intermediate |
+| Braking | Intermediate |
+| Overtaking | Advanced |
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Each topic has an **Overview** tab (description + key points) and a **Flashcards** tab. Flashcards use a flip-card format — tap to reveal the answer, then mark it as *Got it* or *Still learning*. Progress is tracked per topic for the current session.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### IPSGA Game
+A multiple-choice quiz covering all five phases of the System of Motorcycle Control:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **I** — Information
+- **P** — Position
+- **S** — Speed
+- **G** — Gear
+- **A** — Accelerate
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+20 questions (4 per phase), shuffled each time. Each question is tagged to its phase so you can see where to focus. After answering, a full explanation is shown. The results screen breaks down your score per phase.
+
+### UK Highway Code Reference
+A searchable, full-text reference covering all sections of the Highway Code (rules 1–307 + Annexes):
+
+- Pedestrians · Animals · Cyclists · Motorcyclists · General rules
+- Using the road · Road junctions · Roundabouts · Pedestrian crossings
+- Road users requiring extra care · Waiting and parking
+- Motorways · Breakdowns · Road works, level crossings & tramways · Annexes
+
+Legal requirements (MUST / MUST NOT rules) are highlighted in red. Use the search bar to find rules by keyword, topic, or rule number. Section navigation is available in the sidebar (desktop) or via the menu button (mobile).
+
+### Random Rule
+Picks a random numbered rule from the Highway Code and displays it at its own URL (e.g. `/rule/88`). Use it to encounter rules you might not actively seek out.
+
+- The URL updates with each rule, so rules can be bookmarked or shared
+- Prev / next buttons step through adjacent rules sequentially
+- **Another random rule** picks a new rule at random
+- Copy link button copies the current rule's URL to the clipboard
+
+---
+
+## Getting Started
+
+### Prerequisites
+- Node.js 18+
+- npm
+
+### Install and run
+
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+The app will be available at `http://localhost:5173`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Build for production
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run build
 ```
+
+Output goes to `dist/`. Serve it with any static file host.
+
+---
+
+## URL Structure
+
+| URL | Page |
+|---|---|
+| `/` | Home |
+| `/ipsga` | IPSGA Game |
+| `/highway-code` | Highway Code reference |
+| `/topics/:id` | Topic detail (e.g. `/topics/cornering`) |
+| `/rule/:number` | Specific Highway Code rule (e.g. `/rule/88`) |
+| `/rule` | Redirects to a random rule |
+
+---
+
+## Notes
+
+- Session progress (flashcard scores) is held in memory and resets on page refresh. Persistence is not currently implemented.
+- The Highway Code content is a revision summary based on the current UK Highway Code. Always refer to the official GOV.UK Highway Code for the authoritative text.
+- For revision purposes only. Always ride within the law and to your ability.
