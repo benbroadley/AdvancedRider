@@ -29,9 +29,8 @@ function overallStats(progress: Progress) {
 
 // ── Home ───────────────────────────────────────────────────────────────────────
 
-function Home({ progress, onFlashcardsComplete }: {
+function Home({ progress }: {
   progress: Progress
-  onFlashcardsComplete: (id: string, known: string[], learning: string[]) => void
 }) {
   const navigate = useNavigate()
   const [filterDifficulty, setFilterDifficulty] = useState<Difficulty | 'all'>('all')
@@ -245,13 +244,13 @@ export default function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Home progress={progress} onFlashcardsComplete={handleFlashcardsComplete} />} />
+      <Route path="/" element={<Home progress={progress} />} />
       <Route path="/ipsga" element={<IPSGARoute />} />
       <Route path="/highway-code" element={<HighwayCodeRoute />} />
       <Route path="/topics/:topicId" element={<TopicDetailRoute progress={progress} onFlashcardsComplete={handleFlashcardsComplete} />} />
       <Route path="/rule/:number" element={<RandomRule />} />
       <Route path="/rule" element={<RandomRule />} />
-      <Route path="*" element={<Home progress={progress} onFlashcardsComplete={handleFlashcardsComplete} />} />
+      <Route path="*" element={<Home progress={progress} />} />
     </Routes>
   )
 }

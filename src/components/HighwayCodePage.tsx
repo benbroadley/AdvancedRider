@@ -91,7 +91,6 @@ export function HighwayCodePage({ onBack }: HighwayCodePageProps) {
   const [activeSection, setActiveSection] = useState(highwayCodeSections[0].id)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const contentRef = useRef<HTMLDivElement>(null)
-  const sectionRefs = useRef<Record<string, HTMLElement | null>>({})
 
   const totalRules = useMemo(
     () => highwayCodeSections.reduce((s, sec) => s + sec.rules.length, 0),
