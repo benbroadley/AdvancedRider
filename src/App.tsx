@@ -8,6 +8,8 @@ import { TopicDetail } from './components/TopicDetail'
 import { IPSGAGame } from './components/IPSGAGame'
 import { HighwayCodePage } from './components/HighwayCodePage'
 import { RandomRule } from './components/RandomRule'
+import { IAMSAFEGame } from './components/IAMSAFEGame'
+import { POWDDERSSGame } from './components/POWDDERSSGame'
 import { highwayCodeSections } from './data/highwayCode'
 
 type Progress = Record<string, { known: string[]; learning: string[] }>
@@ -106,6 +108,62 @@ function Home({ progress }: {
                   {['I', 'P', 'S', 'G', 'A'].map(letter => (
                     <span key={letter} className="w-6 h-6 rounded-md bg-indigo-500/20 border border-indigo-400/30 text-indigo-300 text-xs font-bold flex items-center justify-center">
                       {letter}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <svg className="w-5 h-5 text-zinc-500 group-hover:text-white transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </Link>
+
+        {/* IAMSAFE Game banner */}
+        <Link
+          to="/iamsafe"
+          className="group w-full mb-4 p-5 rounded-2xl border border-emerald-600/25 bg-gradient-to-r from-emerald-600/15 via-teal-600/10 to-emerald-600/5 hover:border-emerald-500/40 hover:from-emerald-600/20 transition-all duration-200 flex cursor-pointer"
+        >
+          <div className="flex items-center justify-between gap-4 w-full">
+            <div className="flex items-center gap-4">
+              <div className="text-4xl">✅</div>
+              <div>
+                <div className="text-white font-semibold text-lg leading-tight">IAMSAFE Game</div>
+                <div className="text-zinc-400 text-sm mt-0.5">
+                  Fill in the pre-ride fitness checklist — one letter at a time
+                </div>
+                <div className="flex gap-1 mt-2">
+                  {['I','A','M','S','A','F','E'].map((letter, i) => (
+                    <span key={i} className="w-6 h-6 rounded-md bg-emerald-500/15 border border-emerald-400/25 text-emerald-300 text-xs font-bold flex items-center justify-center">
+                      {letter}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <svg className="w-5 h-5 text-zinc-500 group-hover:text-white transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </Link>
+
+        {/* POWDDERSS Game banner */}
+        <Link
+          to="/powdderss"
+          className="group w-full mb-4 p-5 rounded-2xl border border-orange-600/25 bg-gradient-to-r from-orange-600/15 via-amber-600/10 to-orange-600/5 hover:border-orange-500/40 hover:from-orange-600/20 transition-all duration-200 flex cursor-pointer"
+        >
+          <div className="flex items-center justify-between gap-4 w-full">
+            <div className="flex items-center gap-4">
+              <div className="text-4xl">🔧</div>
+              <div>
+                <div className="text-white font-semibold text-lg leading-tight">POWDDERSS Game</div>
+                <div className="text-zinc-400 text-sm mt-0.5">
+                  Fill in the pre-ride machine check — one letter at a time
+                </div>
+                <div className="flex gap-1 mt-2">
+                  {['P','O','W','D','D','E','R','S','S'].map((l, i) => (
+                    <span key={i} className="w-6 h-6 rounded-md bg-orange-500/15 border border-orange-400/25 text-orange-300 text-xs font-bold flex items-center justify-center">
+                      {l}
                     </span>
                   ))}
                 </div>
@@ -248,6 +306,8 @@ export default function App() {
       <Route path="/ipsga" element={<IPSGARoute />} />
       <Route path="/highway-code" element={<HighwayCodeRoute />} />
       <Route path="/topics/:topicId" element={<TopicDetailRoute progress={progress} onFlashcardsComplete={handleFlashcardsComplete} />} />
+      <Route path="/iamsafe" element={<IAMSAFEGame />} />
+      <Route path="/powdderss" element={<POWDDERSSGame />} />
       <Route path="/rule/:number" element={<RandomRule />} />
       <Route path="/rule" element={<RandomRule />} />
       <Route path="*" element={<Home progress={progress} />} />
